@@ -13,7 +13,7 @@ TOKENIZER = tiktoken.encoding_for_model('gpt-2')
 PADDINGTEXT = "<|endoftext|>"
 PADDINGTOKEN = TOKENIZER.encode(PADDINGTEXT,allowed_special = 'all')[0]
 MODEL_DIR = "gpt2-small-124M.pth"   #for downloading model
-BASE_MODEL_DIR = os.path.join(PARENT_DIR, 'BASEModel')
+BASE_MODELS_DIR = os.path.join(PARENT_DIR, 'BASEModel')
 CLASSIFICATION_MODEL_DIR = os.path.join(PARENT_DIR, 'CLASSIFICATION')
 
 
