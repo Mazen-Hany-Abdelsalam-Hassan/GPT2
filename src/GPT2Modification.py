@@ -1,11 +1,13 @@
 from GPT2 import GPTModel , GPT_CONFIG_124M
 import torch.nn as nn
+import torch
 
 class ClassificationModel(nn.Module):
-    def __init__(self ,model:GPTModel, out_units:int =1 , num_block2train:int = 2):
+    def __init__(self ,model_path:str,config:dict=GPT_CONFIG_124M, out_units:int =1 , num_block2train:int = 2):
         super().__init__()
-        #assert num_block2train > GPT_CONFIG_124M["n_layers"]
-        self.model = model
+        self.model = GPTModel(config)
+        weights = torch.load(model_path, weights_only=True)
+        self.model.load_state_dict(weights)
         self.out_units=out_units
         self.num_block2train = num_block2train
         self._replace_heads()
@@ -33,5 +35,4 @@ class ClassificationModel(nn.Module):
 
             for parameter in self.model.trf_blocks[-i].parameters():
                 parameter.requires_grad = True
-    def return_model(self):
-        return  self.model
+
