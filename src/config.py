@@ -3,6 +3,18 @@ import tiktoken
 
 ALLOWED_SEQ_LENGTH = 1000
 SEED = 123
+
+GPT_CONFIG_124M = {
+        "vocab_size": 50257,     # Vocabulary size
+        "context_length": 1024,  # Context length
+        "emb_dim": 768,          # Embedding dimension
+        "n_heads": 12,           # Number of attention heads
+        "n_layers": 12,          # Number of layers
+        "drop_rate": 0.0,        # Dropout rate
+        "qkv_bias": True       # Query-Key-Value bias
+    }
+
+
 LABEL_DICTIONARY = {"positive": 1 , "negative":0}
 PARENT_DIR= os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 train_df_dir = os.path.join(PARENT_DIR ,"data", "train.csv")
